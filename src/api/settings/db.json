@@ -1,0 +1,6 @@
+{
+  "url": {
+    "dev": "mongodb://localhost:27017/gestion-immobilier",
+    "prod": ""
+  }
+}

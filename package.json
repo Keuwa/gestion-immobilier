@@ -1,0 +1,28 @@
+{
+  "name": "gestion-immobilier",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Keuwa/gestion-immobilier.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Keuwa/gestion-immobilier/issues"
+  },
+  "homepage": "https://github.com/Keuwa/gestion-immobilier#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "http": "0.0.0",
+    "lodash": "^4.15.0",
+    "mongoose": "^4.6.0",
+    "passport": "^0.3.2",
+    "swagger-ui-middleware": "^1.0.0"
+  }
+}
