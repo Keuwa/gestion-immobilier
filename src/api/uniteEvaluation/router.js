@@ -5,5 +5,6 @@ var uniteEvaluationRouter = express.Router();
 //route inititiation
 
 uniteEvaluationRouter.get('/',controller.get);
+uniteEvaluationRouter.post('/',controller.post);
 
 module.exports = uniteEvaluationRouter;
