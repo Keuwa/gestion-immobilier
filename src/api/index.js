@@ -5,12 +5,16 @@ var lot = require('./lot/router');
 var uniteEvaluation = require('./uniteEvaluation/router');
 var dossier = require('./dossier/router');
 var proprietaire = require('./proprietaire/router');
+var exploitant = require('./exploitant/router');
+var etablissement = require('./etablissement/router');
 
 app.use('/historiqueBien',historiqueBien);
 app.use('/lot',lot);
 app.use('/uniteEvaluation',uniteEvaluation);
 app.use('/dossier',dossier);
 app.use('/proprietaire',proprietaire);
+app.use('/exploitant',exploitant);
+app.use('/etablissement',etablissement);
 
 // JSON description of all the route of the API
 var routesView = {
@@ -42,6 +46,20 @@ var routesView = {
     uptdateproprietaire: '/proprietaire/:id',
     deleteproprietaire: '/proprietaire/:id',
     getproprietaire: '/proprietaire/:id'
+  },
+  Exploitant: {
+    getAll: '/exploitant',
+    post: '/exploitant',
+    uptdateExploitant: '/exploitant/:id',
+    deleteExploitant: '/exploitant/:id',
+    getExploitant: '/exploitant/:id'
+  },
+  etablissement: {
+    getAll: '/etablissement',
+    post: '/etablissement',
+    uptdateetablissement: '/etablissement/:id',
+    deleteetablissement: '/etablissement/:id',
+    getetablissement: '/etablissement/:id'
   },
 };
 
