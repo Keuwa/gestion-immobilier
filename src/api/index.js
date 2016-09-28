@@ -1,12 +1,17 @@
 var express = require('express');
 var app = express();
-var historiqueBien = require('./historiqueBien/router');
-var lot = require('./lot/router');
-var uniteEvaluation = require('./uniteEvaluation/router');
 var dossier = require('./dossier/router');
 var proprietaire = require('./proprietaire/router');
 var exploitant = require('./exploitant/router');
 var etablissement = require('./etablissement/router');
+var commune = require('./commune/router');
+var typeEnsemble = require('./typeEnsemble/router');
+var ensemble = require('./ensemble/router');
+var historiqueEnsemble = require('./historiqueEnsemble/router');
+var lot = require('./lot/router');
+
+var historiqueBien = require('./historiqueBien/router');
+var uniteEvaluation = require('./uniteEvaluation/router');
 
 app.use('/historiqueBien',historiqueBien);
 app.use('/lot',lot);
@@ -15,6 +20,10 @@ app.use('/dossier',dossier);
 app.use('/proprietaire',proprietaire);
 app.use('/exploitant',exploitant);
 app.use('/etablissement',etablissement);
+app.use('/commune',commune);
+app.use('/typeEnsemble',typeEnsemble);
+app.use('/ensemble',ensemble);
+app.use('/historiqueEnsemble',historiqueEnsemble);
 
 // JSON description of all the route of the API
 var routesView = {
@@ -60,6 +69,27 @@ var routesView = {
     uptdateetablissement: '/etablissement/:id',
     deleteetablissement: '/etablissement/:id',
     getetablissement: '/etablissement/:id'
+  },
+  commune: {
+    getAll: '/commune',
+    post: '/commune',
+    uptdatecommune: '/commune/:id',
+    deletecommune: '/commune/:id',
+    getcommune: '/commune/:id'
+  },
+  typeEnsemble: {
+    getAll: '/typeEnsemble',
+    post: '/typeEnsemble',
+    uptdatetypeEnsemble: '/typeEnsemble/:id',
+    deletetypeEnsemble: '/typeEnsemble/:id',
+    gettypeEnsemble: '/typeEnsemble/:id'
+  },
+  ensemble: {
+    getAll: '/ensemble',
+    post: '/ensemble',
+    uptdateensemble: '/ensemble/:id',
+    deleteensemble: '/ensemble/:id',
+    getensemble: '/ensemble/:id'
   },
 };
 

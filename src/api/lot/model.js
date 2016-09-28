@@ -3,12 +3,32 @@ var mongoose = require('mongoose');
 
 // Define users schema
 var lotSchema = new mongoose.Schema({
-  name: {
-    type: String,
+  lotNumber: {
+    type: String
+  },
+  batiment: {
+    type: String
+  },
+  designation: {
+    type: String
+  },
+  tantieme: {
+    type: Number
+  },
+  multiCFE: {
+    type: Boolean
+  },
+  proprietaire: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'proprietaire'
+  },
+  historiqueEnsemble: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'historiqueEnsemble'
   },
   historiqueBien: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'historiqueBien',
+    ref: 'historiqueBien'
   }],
   uniteEvaluation: [{
     type: mongoose.Schema.Types.ObjectId,

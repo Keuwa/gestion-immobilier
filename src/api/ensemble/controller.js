@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
-var etablissementModel = require('./model.js');
-var ExploitantModel = require('../exploitant/model.js');
+var ensembleModel = require('./model.js');
 var _ = require('lodash');
 
 exports.get = function get(req,res){
@@ -9,56 +8,59 @@ exports.get = function get(req,res){
     research = req.query;
     delete research.api_key;
   }
-  etablissementModel.find(research)
+  ensembleModel.find(research)
     .populate({
-      path: 'exploitant',
-      populate: { path: 'exploitant' }})
-    .exec(function(err, etablissements) {
+        path: 'commune',
+        populate: { path: 'commune'}})
+    .populate({
+        path: 'typeEnsemble',
+        populate: { path: 'typeEnsemble'}})
+    .exec(function(err, ensembles) {
       if (err) {
         res.status(400).send({ error: 'BAD_REQUEST', code: 400});
       }
       else {
-        res.json(etablissements);
+        res.json(ensembles);
       }
     })
   ;
 };
 
 exports.post = function post(req,res) {
-  var etablissement = new etablissementModel();
-  _.extend(etablissement,req.body);
-  etablissement.save(function (err) {
+  var ensemble = new ensembleModel();
+  _.extend(ensemble,req.body);
+  ensemble.save(function (err) {
     if(err){
-      //res.send(err)
+      res.send(err)
       res.status(400).send({error:'BAD_REQUEST',code: 400});
     }
     else{
-      res.json(etablissement)
+      res.json(ensemble)
     }
 
   })
 };
 
 exports.update = function(req,res){
-  etablissementModel.findOneAndUpdate({_id:req.params.id},req.body,function (err,etablissement) {
+  ensembleModel.findOneAndUpdate({_id:req.params.id},req.body,function (err,ensemble) {
     if(err){
       res.status(400).send({ error: 'BAD_REQUEST', code: 400, log: err});
     }
-    else if(!etablissement){
+    else if(!ensemble){
       res.status(404).json({ error: 'NOT_FOUND', code: 404});
     }
     else {
-      res.json(etablissement);
+      res.json(ensemble);
     }
   });
 }
 
 exports.delete = function (req,res) {
-  etablissementModel.findOneAndRemove({_id:req.params.id},function (err,etablissement) {
+  ensembleModel.findOneAndRemove({_id:req.params.id},function (err,ensemble) {
     if(err){
       res.status(400).send({ error: 'BAD_REQUEST', code: 400, log: err});
     }
-    else if(!etablissement){
+    else if(!ensemble){
       res.status(404).json({ error: 'NOT_FOUND', code: 404});
     }
     else{
@@ -68,19 +70,22 @@ exports.delete = function (req,res) {
 }
 
 exports.getOne = function (req,res) {
-  etablissementModel.findOne({_id:req.params.id})
+  ensembleModel.findOne({_id:req.params.id})
     .populate({
-      path: 'exploitant',
-      populate: { path: 'exploitant' }})
-    .exec(function (err,etablissement) {
+        path: 'commune',
+        populate: { path: 'commune'}})
+    .populate({
+        path: 'typeEnsemble',
+        populate: { path: 'typeEnsemble'}})
+    .exec(function (err,ensemble) {
       if(err){
         res.status(400).send({ error: 'BAD_REQUEST', code: 400, log: err});
       }
-      else if(!etablissement){
+      else if(!ensemble){
         res.status(404).json({ error: 'NOT_FOUND', code: 404});
       }
       else{
-        res.json(etablissement);
+        res.json(ensemble);
       }
   });
 }

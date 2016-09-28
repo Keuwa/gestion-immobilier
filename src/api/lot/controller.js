@@ -11,10 +11,18 @@ exports.get = function get(req,res){
     delete research.api_key;
   }
   LotModel.find(research)
-    /*.populate({
-      path: 'recipe',
-      populate: { path: 'owner' }})
-    .populate('owner')*/
+  .populate({
+      path: 'proprietaire',
+      populate: { path: 'proprietaire'}})
+  .populate({
+      path: 'ensemble',
+      populate: { path: 'ensemble'}})
+  .populate({
+      path: 'historiqueBien',
+      populate: { path: 'historiqueBien'}})
+  .populate({
+      path: 'uniteEvaluation',
+      populate: { path: 'uniteEvaluation'}})
     .exec(function(err, lots) {
       if (err) {
         res.status(400).send({ error: 'BAD_REQUEST', code: 400});
@@ -51,8 +59,6 @@ exports.update = function(req,res){
     }
     else {
       LotModel.findOne({_id: lot._id})
-        .populate('historiqueBien')
-        .populate('uniteEvaluation')
         .exec(function(err, resLot) {
           if (err) {
             res.status(400).send({ error: 'BAD_REQUEST', code: 400, log: err});
@@ -79,5 +85,46 @@ exports.update = function(req,res){
           }
         });
     }
+  });
+}
+
+exports.delete = function (req,res) {
+  lotModel.findOneAndRemove({_id:req.params.id},function (err,lot) {
+    if(err){
+      res.status(400).send({ error: 'BAD_REQUEST', code: 400, log: err});
+    }
+    else if(!lot){
+      res.status(404).json({ error: 'NOT_FOUND', code: 404});
+    }
+    else{
+      res.status(200).json({ error: 'OK', code: 200});
+    }
+  })
+}
+
+exports.getOne = function (req,res) {
+  lotModel.findOne({_id:req.params.id})
+    .populate({
+        path: 'proprietaire',
+        populate: { path: 'proprietaire'}})
+    .populate({
+        path: 'ensemble',
+        populate: { path: 'ensemble'}})
+    .populate({
+        path: 'historiqueBien',
+        populate: { path: 'historiqueBien'}})
+    .populate({
+        path: 'uniteEvaluation',
+        populate: { path: 'uniteEvaluation'}})
+    .exec(function (err,lot) {
+      if(err){
+        res.status(400).send({ error: 'BAD_REQUEST', code: 400, log: err});
+      }
+      else if(!lot){
+        res.status(404).json({ error: 'NOT_FOUND', code: 404});
+      }
+      else{
+        res.json(lot);
+      }
   });
 }

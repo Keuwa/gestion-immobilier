@@ -25,6 +25,28 @@ var etablissementSchema = new mongoose.Schema({
   city:{
     type:String
   },
+  openingDate:{
+    type:Date
+  },
+  closingDate:{
+    type:Date
+  },
+  QVP:{
+    type:Boolean
+  },
+  ZFA:{
+    type:String,
+    enum:["normal","majore"]
+  },
+  ZFU:{
+    type:Boolean
+  },
+  ZFUGeneration:{
+    type:String
+  },
+  Tascom:{
+    type:Boolean
+  },
   exploitant:{
     type: mongoose.Schema.Types.ObjectId,
     ref:"exploitant"
