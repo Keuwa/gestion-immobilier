@@ -39,3 +39,38 @@ exports.post = function post(req,res) {
 
   })
 };
+
+exports.delete = function (req,res) {
+  uniteEvaluationModel.findOneAndRemove({_id:req.params.id},function (err,uniteEvaluation) {
+    if(err){
+      res.status(400).send({ error: 'BAD_REQUEST', code: 400, log: err});
+    }
+    else if(!uniteEvaluation){
+      res.status(404).json({ error: 'NOT_FOUND', code: 404});
+    }
+    else{
+      res.status(200).json({ error: 'OK', code: 200});
+    }
+  })
+}
+
+exports.getOne = function (req,res) {
+  uniteEvaluationModel.findOne({_id:req.params.id})
+    .populate({
+        path: 'historiqueBien',
+        populate: { path: 'historiqueBien'}})
+    .populate({
+        path: 'lot',
+        populate: { path: 'lot'}})
+    .exec(function (err,uniteEvaluation) {
+      if(err){
+        res.status(400).send({ error: 'BAD_REQUEST', code: 400, log: err});
+      }
+      else if(!uniteEvaluation){
+        res.status(404).json({ error: 'NOT_FOUND', code: 404});
+      }
+      else{
+        res.json(uniteEvaluation);
+      }
+  });
+}

@@ -3,8 +3,36 @@ var mongoose = require('mongoose');
 
 // Define users schema
 var uniteEvaluationSchema = new mongoose.Schema({
-  name: {
-    type: String,
+  invariant: {
+    type: String
+  },
+  cle: {
+    type: String
+  },
+  section: {
+    type: String
+  },
+  plan: {
+    type: String
+  },
+  adresse: {
+    type: String
+  },
+  batiment: {
+    type: String
+  },
+  entre: {
+    type: Number
+  },
+  niveau: {
+    type: Number
+  },
+  porte: {
+    type: Number
+  },
+  commune: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'commune',
   },
   historiqueBien: [{
     type: mongoose.Schema.Types.ObjectId,

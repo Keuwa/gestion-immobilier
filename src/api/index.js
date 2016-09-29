@@ -12,9 +12,13 @@ var lot = require('./lot/router');
 var bien = require('./bien/router');
 var occupation = require('./occupation/router');
 var historiqueBien = require('./historiqueBien/router');
-
-
+var surfaceCBD = require('./surfaceCBD/router');
+var localType = require('./localType/router');
+var historique75 = require('./historique75/router');
+var occupationFiscale = require('./occupationFiscale/router');
+var categorieLocal = require('./categorieLocal/router');
 var uniteEvaluation = require('./uniteEvaluation/router');
+var historiqueREV = require('./historiqueREV/router');
 
 app.use('/historiqueBien',historiqueBien);
 app.use('/lot',lot);
@@ -29,6 +33,12 @@ app.use('/ensemble',ensemble);
 app.use('/historiqueEnsemble',historiqueEnsemble);
 app.use('/bien',bien);
 app.use('/occupation',occupation);
+app.use('/surfaceCBD',surfaceCBD);
+app.use('/historique75',historique75);
+app.use('/localType',localType);
+app.use('/occupationFiscale',occupationFiscale);
+app.use('/categorieLocal',categorieLocal);
+app.use('/historiqueREV',historiqueREV);
 
 // JSON description of all the route of the API
 var routesView = {
