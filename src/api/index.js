@@ -9,8 +9,11 @@ var typeEnsemble = require('./typeEnsemble/router');
 var ensemble = require('./ensemble/router');
 var historiqueEnsemble = require('./historiqueEnsemble/router');
 var lot = require('./lot/router');
-
+var bien = require('./bien/router');
+var occupation = require('./occupation/router');
 var historiqueBien = require('./historiqueBien/router');
+
+
 var uniteEvaluation = require('./uniteEvaluation/router');
 
 app.use('/historiqueBien',historiqueBien);
@@ -24,6 +27,8 @@ app.use('/commune',commune);
 app.use('/typeEnsemble',typeEnsemble);
 app.use('/ensemble',ensemble);
 app.use('/historiqueEnsemble',historiqueEnsemble);
+app.use('/bien',bien);
+app.use('/occupation',occupation);
 
 // JSON description of all the route of the API
 var routesView = {

@@ -82,3 +82,47 @@ exports.update = function(req,res){
     }
   });
 }
+
+exports.delete = function (req,res) {
+  historiqueBienModel.findOneAndRemove({_id:req.params.id},function (err,historiqueBien) {
+    if(err){
+      res.status(400).send({ error: 'BAD_REQUEST', code: 400, log: err});
+    }
+    else if(!historiqueBien){
+      res.status(404).json({ error: 'NOT_FOUND', code: 404});
+    }
+    else{
+      res.status(200).json({ error: 'OK', code: 200});
+    }
+  })
+}
+
+exports.getOne = function (req,res) {
+  historiqueBienModel.findOne({_id:req.params.id})
+    .populate({
+        path: 'bien',
+        populate: { path: 'bien'}})
+    .populate({
+        path: 'proprietaire',
+        populate: { path: 'proprietaire'}})
+    .populate({
+        path: 'occupation',
+        populate: { path: 'occupation'}})
+    .populate({
+        path: 'lot',
+        populate: { path: 'lot'}})
+    .populate({
+        path: 'uniteEvaluation',
+        populate: { path: 'uniteEvaluation'}})
+    .exec(function (err,historiqueBien) {
+      if(err){
+        res.status(400).send({ error: 'BAD_REQUEST', code: 400, log: err});
+      }
+      else if(!historiqueBien){
+        res.status(404).json({ error: 'NOT_FOUND', code: 404});
+      }
+      else{
+        res.json(historiqueBien);
+      }
+  });
+}
