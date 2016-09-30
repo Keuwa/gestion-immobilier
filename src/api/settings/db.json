@@ -1,6 +1,6 @@
 {
   "url": {
     "dev": "mongodb://localhost:27017/gestion-immobilier",
-    "prod": ""
+    "prod": "mongodb://keuwa:Camalvin12@ds033986.mlab.com:33986/gestionimmobilier"
   }
 }
