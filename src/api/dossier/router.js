@@ -1,13 +1,14 @@
 const controller = require('./controller');
 const express = require('express');
+var authController = require('../auth');
 var dossierRouter = express.Router();
 
 //route inititiation
 
-dossierRouter.get('/',controller.get);
-dossierRouter.post('/',controller.post);
-dossierRouter.put('/:id',controller.update);
-dossierRouter.get('/:id',controller.getOne);
-dossierRouter.delete('/:id',controller.delete);
+dossierRouter.get('/', authController.isAuthenticated,controller.get);
+dossierRouter.post('/',authController.isAuthenticated,controller.post);
+dossierRouter.put('/:id',authController.isAuthenticated,controller.update);
+dossierRouter.get('/:id',authController.isAuthenticated,controller.getOne);
+dossierRouter.delete('/:id',authController.isAuthenticated,controller.delete);
 
 module.exports = dossierRouter;

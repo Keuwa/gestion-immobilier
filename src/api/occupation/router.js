@@ -1,13 +1,14 @@
 const controller = require('./controller');
 const express = require('express');
 var occupationRouter = express.Router();
+var authController = require('../auth');
 
 //route inititiation
 
-occupationRouter.get('/',controller.get);
-occupationRouter.post('/',controller.post);
-occupationRouter.put('/:id',controller.update);
-occupationRouter.get('/:id',controller.getOne);
-occupationRouter.delete('/:id',controller.delete);
+occupationRouter.get('/',authController.isAuthenticated,controller.get);
+occupationRouter.post('/',authController.isAuthenticated,controller.post);
+occupationRouter.put('/:id',authController.isAuthenticated,controller.update);
+occupationRouter.get('/:id',authController.isAuthenticated,controller.getOne);
+occupationRouter.delete('/:id',authController.isAuthenticated,controller.delete);
 
 module.exports = occupationRouter;

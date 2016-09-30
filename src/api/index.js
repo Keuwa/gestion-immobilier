@@ -19,6 +19,7 @@ var occupationFiscale = require('./occupationFiscale/router');
 var categorieLocal = require('./categorieLocal/router');
 var uniteEvaluation = require('./uniteEvaluation/router');
 var historiqueREV = require('./historiqueREV/router');
+var user = require('./user/router');
 
 app.use('/historiqueBien',historiqueBien);
 app.use('/lot',lot);
@@ -39,6 +40,7 @@ app.use('/localType',localType);
 app.use('/occupationFiscale',occupationFiscale);
 app.use('/categorieLocal',categorieLocal);
 app.use('/historiqueREV',historiqueREV);
+app.use('/user',user);
 
 // JSON description of all the route of the API
 var routesView = {

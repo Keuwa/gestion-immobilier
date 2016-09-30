@@ -18,12 +18,15 @@
   },
   "homepage": "https://github.com/Keuwa/gestion-immobilier#readme",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "http": "0.0.0",
+    "jsonwebtoken": "^7.1.9",
     "lodash": "^4.15.0",
     "mongoose": "^4.6.0",
     "passport": "^0.3.2",
+    "passport-jwt": "^2.1.0",
     "swagger-ui-middleware": "^1.0.0"
   }
 }

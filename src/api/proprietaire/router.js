@@ -1,13 +1,14 @@
 const controller = require('./controller');
 const express = require('express');
 var proprietaireRouter = express.Router();
+var authController = require('../auth');
 
 //route inititiation
 
-proprietaireRouter.get('/',controller.get);
-proprietaireRouter.post('/',controller.post);
-proprietaireRouter.put('/:id',controller.update);
-proprietaireRouter.get('/:id',controller.getOne);
-proprietaireRouter.delete('/:id',controller.delete);
+proprietaireRouter.get('/',authController.isAuthenticated,controller.get);
+proprietaireRouter.post('/',authController.isAuthenticated,controller.post);
+proprietaireRouter.put('/:id',authController.isAuthenticated,controller.update);
+proprietaireRouter.get('/:id',authController.isAuthenticated,controller.getOne);
+proprietaireRouter.delete('/:id',authController.isAuthenticated,controller.delete);
 
 module.exports = proprietaireRouter;
