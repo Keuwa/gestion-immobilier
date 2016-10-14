@@ -16,6 +16,10 @@ module.exports = {
         cacheDirectory: 'babel_cache',
         presets: ['react', 'es2015']
       }
+    },
+    {
+      test: /\.css/,
+      loader: "style-loader!css-loader"
     }]
   },
   plugins: [
