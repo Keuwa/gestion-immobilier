@@ -29,7 +29,7 @@ else {
 
 app.use('/static', express.static(path.resolve(__dirname + '/public/static/')));
 
-app.use('/*', function(req, res, next) {
+app.use('/app', function(req, res, next) {
   console.log(__dirname + '/public/static/index.html');
 	res.sendFile(path.resolve(__dirname + '/public/static/index.html'));
 });

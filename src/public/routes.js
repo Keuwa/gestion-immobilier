@@ -6,8 +6,8 @@ import MainPage from './components/pages/MainPage'
 
 const routes = (
     <Route>
-      <Route path="/" component={LoginPage}/>
-      <Route path="main" component={MainPage}/>
+      <Route path="/app" component={LoginPage}/>
+      <Route path="/app/main" component={MainPage}/>
     </Route>
 );
 

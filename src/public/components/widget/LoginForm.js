@@ -1,6 +1,14 @@
 import React from 'react'
+import AuthActions from '../../action/auth'
 
 export default class LoginForm extends React.Component {
+  constructor(props){
+      super(props);
+      this.state = {
+        email:'',
+        password:''
+      }
+  }
   render() {
     return (
       <div className="login">
@@ -14,7 +22,7 @@ export default class LoginForm extends React.Component {
             <input type="password" className="loginInput" placeholder="Password"/>
           </div>
           <div>
-            <button className="buttonSubmit"> Connexion </button>
+            <button className="buttonSubmit" onClick={AuthActions.login}> Connexion </button>
           </div>
         </div>
       </div>
