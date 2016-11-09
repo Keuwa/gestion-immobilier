@@ -10,7 +10,9 @@ module.exports = {
   },
   module: {
     loaders: [{
-      test: path.join(__dirname, 'src/public'),
+      test: /.js?$/,
+      //include:[path.resolve(__dirname,"src/public")],
+      exclude: /node_modules/,
       loader: ['babel-loader'],
       query: {
         cacheDirectory: 'babel_cache',
@@ -18,22 +20,18 @@ module.exports = {
       }
     },
     {
+      test: /\.json/,
+      loader: "json-loader"
+    },
+    {
       test: /\.css/,
       loader: "style-loader!css-loader"
     }]
   },
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
-    }),
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: { warnings: false },
-      mangle: true,
-      sourcemap: false,
-      beautify: false,
-      dead_code: true
-    })
-  ]
+  node : {
+    console: 'empty',
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty'
+  }
 };
